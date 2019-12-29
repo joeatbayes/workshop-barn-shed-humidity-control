@@ -1,6 +1,6 @@
 # Low Energy Barn, shop, shed drier
 
- 
+ CURRENT STATE:  PRE-ALPHA DO NOT USE UNTIL IT REACHES ALPHA LEVEL
 
 ## Goal:
 
