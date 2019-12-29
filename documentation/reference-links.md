@@ -2,25 +2,12 @@
 
 
 
+## Humidity & Dewpoint
+
+
+
 * [Google Sheet to convert RH and Temp to grams per cubic meter](https://docs.google.com/spreadsheets/d/11SYzsOHdeb-T815AajQ4KBsV5wTH1mn9D_bi_d3uxyo/edit?usp=sharing)
 
-* [Calculating Pressure and Density Height ](https://www.brisbanehotairballooning.com.au/calculating-pressure-and-density-height/) -  30 foot of altitude changes = 1hPa change.      1hPa = 100 pascal.  A such foot of change should equal to 3.3 pascal change.
-
-* [Create a Iot Sensor with NodeMCU and Lua](https://blog.alexellis.io/iot-nodemcu-sensor-bme280/) includes reading BMP280 some comparison to Rasberry PI.  Claims upto a year on a a single 2500mAh LiPo battery. when in deep sleep.  Instructions on how to flash the firmware
-
-* [Create A Simple ESP8266 Weather Station With BME280](https://lastminuteengineers.com/bme280-esp8266-weather-station/)
-
-* [MicroPython: BME280 with ESP32 and ESP8266 Pressure, Temperature, Humidity](https://randomnerdtutorials.com/micropython-bme280-esp32-esp8266/)
-
-* [bme280 sensor users guide](https://www.bosch-sensortec.com/media/boschsensortec/downloads/environmental_sensors_2/humidity_sensors_1/bme280/bst-bme280-ds002.pdf)
-
-* [Calculating Pressure and Density Height](https://www.brisbanehotairballooning.com.au/calculating-pressure-and-density-height/) Air pressure in the ISA is 1013 hectoPascals at Mean Sea Level and the pressure decreases with altitude, at about 1 hPa per 30 feet gain in height in the lower levels of the atmosphere. Air temperature in the ISA is +15oC at Mean Sea Level and decreases at approximately 2oC per 1000 feet gain in altitude.
-
-* [adafruit BME280 how to with schematic](https://learn.adafruit.com/adafruit-bme280-humidity-barometric-pressure-temperature-sensor-breakout?view=all)  includes formula to compute dewpoint in python
-
-* [Create a simple weather station with BME280, ESP8266 and Arduino IDE](https://lastminuteengineers.com/bme280-esp8266-weather-station/)
-
-* [Create an IoT sensor with NodeMCU and Lua](https://blog.alexellis.io/iot-nodemcu-sensor-bme280/) with BME 280 sensor
 
 * [How to convert relative humidity to absolute humidity](https://carnotcycle.wordpress.com/2012/08/04/how-to-convert-relative-humidity-to-absolute-humidity/)
 
@@ -35,10 +22,11 @@
     
 
     <iframe src="https://c0.pubmine.com/sf/0.0.1/html/safeframe.html" id="safeframe-sf-inline-ad-0" frameborder="no" scrolling="no" allowtranparency="true" hidefocus="true" tabindex="-1" marginwidth="0" marginheight="0" style="margin: 0px; padding: 0px; border: 0px; font-weight: inherit; font-style: inherit; font-size: 12px; font-family: inherit; vertical-align: baseline; display: block; height: 250px; left: 0px; position: absolute; top: 0px; visibility: inherit; width: 300px; z-index: 0;"></iframe>
-REPORT THIS AD
+
     
 
     
+
 jpg format (decimal separator = .)
     
 [![ah1](https://carnotcycle.files.wordpress.com/2014/09/ah1.jpg?w=614)](https://carnotcycle.files.wordpress.com/2014/09/ah1.jpg)
@@ -48,7 +36,7 @@ jpg format (decimal separator = ,)
 [![ah1a](https://carnotcycle.files.wordpress.com/2014/09/ah1a.jpg?w=614)](https://carnotcycle.files.wordpress.com/2014/09/ah1a.jpg)
     
 ***– – – –***
-  
+
 * [Calculate absolute humidity from temperature and relative humidity](https://github.com/atmos-python/atmos/issues/3)
 
   * ```
@@ -62,9 +50,24 @@ jpg format (decimal separator = ,)
     
 
 * [Silica Gel  & Molecular Sieve absorption curve](https://valdamarkdirect.com/product/silica-gel-sachets/)
-  
+
   * ![Image result for silica gel absorption rate](http://valdamarkdirect.com/wp-content/uploads/2014/10/Screenshot020.jpg)
 
+
+
+# Sensors
+
+* [Create a Iot Sensor with NodeMCU and Lua](https://blog.alexellis.io/iot-nodemcu-sensor-bme280/) includes reading BMP280 some comparison to Rasberry PI.  Claims upto a year on a a single 2500mAh LiPo battery. when in deep sleep.  Instructions on how to flash the firmware
+
+* [Create A Simple ESP8266 Weather Station With BME280](https://lastminuteengineers.com/bme280-esp8266-weather-station/)
+
+* [MicroPython: BME280 with ESP32 and ESP8266 Pressure, Temperature, Humidity](https://randomnerdtutorials.com/micropython-bme280-esp32-esp8266/)
+
+* [Create a simple weather station with BME280, ESP8266 and Arduino IDE](https://lastminuteengineers.com/bme280-esp8266-weather-station/)
+
+* [Create an IoT sensor with NodeMCU and Lua](https://blog.alexellis.io/iot-nodemcu-sensor-bme280/) with BME 280 sensor
+
+* 
 
 
 ## ESP8266 and ESP32
@@ -228,17 +231,13 @@ jpg format (decimal separator = ,)
 
 
 
-# Wireless extended Range
-
-* [nrf2401 real life range test claims over 100 meter range with good antena](https://hallard.me/nrf24l01-real-life-range-test/)
+* 
 
 ## Other Platforms
 
 [**DART-6UL** : NXP iMX6UL / 6ULL / 6ULZ](https://www.variscite.com/product/system-on-module-som/cortex-a7/dart-6ul-freescale-imx-6ul/) 24 dollar,   WiFi, Bluetooth,  NXP cpu at 0.9 GHtz,  [datasheet](https://www.variscite.com/wp-content/uploads/2018/01/DART-6UL_DART-6UL-5G_Datasheet.pdf),  current under 5mA in supsend,  tons of IO,  Memory $128MB to 1024 MB DDR3L,  SLC NAND 128MB - 512MB,  eMMC 4-64GB.  8 Uart, 4 I2C, 4 SPI,  RTC, 2 CAN,  ADC 12 bit 2 X 10 chanel,  Eithernet,   [Eval kit 129](https://shop.variscite.com/product/evaluation-kit/dart-6ul-evaluation-kits/) 
 
 [Node.js embedded Development on Espruino  35](https://www.adafruit.com/product/1887)
-
-
 
 [STM with EPaper display 8K ram 65K flash and touch sensor](https://www.st.com/en/evaluation-tools/32l0538discovery.html)
 
@@ -271,21 +270,4 @@ jpg format (decimal separator = ,)
 
 
 
-
-
-
-
-
-## Dam Construction
-
-
-
-* [Aquadam.net water filled coffer dams](https://www.aquadam.net/residential-flood-control/)
-
-* [quick dam flood barrier 3.5 in H,  6.5"W  x120" long.  $25.99](https://www.acehardware.com/departments/building-supplies/concrete-cement-and-masonry/flood-barriers/5681622)
-* [Halsted white sand & Utility bags 30lb](https://www.acehardware.com/departments/building-supplies/concrete-cement-and-masonry/sand-and-gravel/5162797)
-* [50 pack holds 45 pound sand $18.69](https://www.homedepot.com/p/Hercules-Sand-Bags-50-Pack-HP02071422b50g/100291336)
-* [14 in X 26"  100 pack $35.73  Hold 50 pounds of sand,  1600 hour UV protection](https://www.homedepot.com/p/14-in-x-26-in-White-Polypropylene-Sandbag-100-Pack-14981-10-14/204277293?MERCH=REC-_-pipinstock-_-100291336-_-204277293-_-N)
-* [100 bag 14" X 26" military grade $41.99](https://www.amazon.com/Sandbags-Flooding-Size-Barrier-Sandbaggy/dp/B075LWH47Z/ref=sm_n_ma_dka_US_pr_ran_0_0?adId=B075LQYV1Z&creativeASIN=B075LQYV1Z&linkId=6569c5ae9996efde1ed489a3e7ef7daa&tag=chainjourn-20&linkCode=w43&ref-refURL=https%3A%2F%2Fwww.chainsawjournal.com%2Fsandbags-for-flooding%2F&slotNum=0&imprToken=fezlsrb9CDiSH-gmhNpFyQ&adType=smart&adMode=manual&adFormat=grid&impressionTimestamp=1576974843344&th=1)    [5000 bags $1249.99](https://www.amazon.com/Sandbags-Flooding-Size-Barrier-Sandbaggy/dp/B075LTLK4G/ref=sm_n_ma_dka_US_pr_ran_0_0?adId=B075LQYV1Z&creativeASIN=B075LQYV1Z&linkId=6569c5ae9996efde1ed489a3e7ef7daa&tag=chainjourn-20&linkCode=w43&ref-refURL=https%3A%2F%2Fwww.chainsawjournal.com%2Fsandbags-for-flooding%2F&slotNum=0&imprToken=fezlsrb9CDiSH-gmhNpFyQ&adType=smart&adMode=manual&adFormat=grid&impressionTimestamp=1576974843344&th=1)  [20,000 bags $3999](https://www.amazon.com/Sandbags-Flooding-Size-Barrier-Sandbaggy/dp/B075LZMGY4/ref=sm_n_ma_dka_US_pr_ran_0_0?adId=B075LQYV1Z&creativeASIN=B075LQYV1Z&linkId=6569c5ae9996efde1ed489a3e7ef7daa&tag=chainjourn-20&linkCode=w43&ref-refURL=https%3A%2F%2Fwww.chainsawjournal.com%2Fsandbags-for-flooding%2F&slotNum=0&imprToken=fezlsrb9CDiSH-gmhNpFyQ&adType=smart&adMode=manual&adFormat=grid&impressionTimestamp=1576974843344&th=1) or $0.19 each.
-* [Building Sandbag dams](https://science.howstuffworks.com/nature/natural-disasters/sandbag4.htm) For a 4 foot high wall bult in a pyramid will take about 78 per sq foot.  Wall have to be ina pymad shape.
 
