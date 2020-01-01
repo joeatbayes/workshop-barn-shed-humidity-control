@@ -1,0 +1,4 @@
+On Dec-30-2019 I realized the LUA made available
+for the ESP32 does not include the math library.
+As such I decided it is not a valid application 
+for the Shed Dryer.
