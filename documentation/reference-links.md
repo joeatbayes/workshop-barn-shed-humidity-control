@@ -4,12 +4,14 @@
 
 ## Humidity & Dewpoint
 
-
+* [**Calculate Temperature, Dewpoint, or Relative Humidity Miami.edu**](https://bmcnoldy.rsmas.miami.edu/Humidity.html) includes for calculating Relative humidity, dewpoint and T when the other two are known.
+* [omnicalculator.com physics dew-point](https://www.omnicalculator.com/physics/dew-point) - many other formula available at this site.
+* [calculator.net dewpoint calculator](https://www.calculator.net/dew-point-calculator.html) includes absolute humidity, saturation vapor pressure, moisture concentration ppm and by weight.  (**Best of the Set**) 
 
 * [Google Sheet to convert RH and Temp to grams per cubic meter](https://docs.google.com/spreadsheets/d/11SYzsOHdeb-T815AajQ4KBsV5wTH1mn9D_bi_d3uxyo/edit?usp=sharing)
 
 
-* [How to convert relative humidity to absolute humidity](https://carnotcycle.wordpress.com/2012/08/04/how-to-convert-relative-humidity-to-absolute-humidity/)
+* [How to convert relative humidity to absolute humidity](https://carnotcycle.wordpress.com/2012/08/04/how-to-convert-relative-humidity-to-absolute-humidity/),
 
   * gif format (decimal separator = .)
 
@@ -23,7 +25,6 @@
 
     <iframe src="https://c0.pubmine.com/sf/0.0.1/html/safeframe.html" id="safeframe-sf-inline-ad-0" frameborder="no" scrolling="no" allowtranparency="true" hidefocus="true" tabindex="-1" marginwidth="0" marginheight="0" style="margin: 0px; padding: 0px; border: 0px; font-weight: inherit; font-style: inherit; font-size: 12px; font-family: inherit; vertical-align: baseline; display: block; height: 250px; left: 0px; position: absolute; top: 0px; visibility: inherit; width: 300px; z-index: 0;"></iframe>
 
-    
 
 
 jpg format (decimal separator = .)
@@ -52,6 +53,8 @@ jpg format (decimal separator = ,)
 
   * ![Image result for silica gel absorption rate](http://valdamarkdirect.com/wp-content/uploads/2014/10/Screenshot020.jpg)
 
+[Pressure to Altitude Conversion](https://www.brisbanehotairballooning.com.au/wp-content/uploads/PressuretoAltitudeConversion.pdf)
+
 
 
 # Sensors
@@ -75,12 +78,17 @@ jpg format (decimal separator = ,)
 * [Control GPI pins for Rasberry PI](https://learn.sparkfun.com/tutorials/raspberry-gpio) Both Python and C based examples
 * [Run Adruino sketch on Rasberry PI](https://www.deviceplus.com/how-tos/raspberrypi-guide/how-to-run-arduino-sketches-on-raspberry-pi/) WiFi Station & AP,  GUI example, MSG example, Timer,  GPIO, PWM, Servo,  I2C clock reading, DS18B20 one wire,  graphics examples.
 * [PC Run Basic](http://runbasic.com/)
+* [Raspberrypi getting started ](https://projects.raspberrypi.org/en/projects/raspberry-pi-setting-up/2)
 * 
 
 
 
 
 ## ESP8266 and ESP32
+
+* [Wemos Mini interfaced to BME280](http://www.esp8266learning.com/esp8266-and-bme280-temperature-sensor-example.php) Includes software to interface with chip using only the wire interface rather than a external library.
+
+* [how to set static IP for wemos mini](https://ice786pk.com/?p=652)
 
 * [NodeMCDU ESP-32s documentation](https://docs.zerynth.com/latest/official/board.zerynth.nodemcu_esp32/docs/index.html) Pin Mapping,  Flash Layout,   512KB free for storage,   3.3 operating voltage,  28 DIO pins, 8 ADC pins,  2 DAC pins,  3 UART,  2 SPI, 3 I2C,  3 MB flash memory, SRAM 520KB,  WiFi 802.11, 
 
@@ -110,34 +118,47 @@ jpg format (decimal separator = ,)
 
     * [Learn ESP32 with arduino IDE $39](https://randomnerdtutorials.com/learn-esp32-with-arduino-ide/#sign-up)
   * [Install ESP32 Filesystem Uploader in Arduino IDE](https://randomnerdtutorials.com/install-esp32-filesystem-uploader-arduino-ide/)
+    
     * [ESP32 Web Server using SPIFFS (SPI Flash File System)](https://randomnerdtutorials.com/esp32-web-server-spiffs-spi-flash-file-system/)
   * [ESP32 OLED Display with Arduino IDE](https://randomnerdtutorials.com/esp32-ssd1306-oled-display-arduino-ide/) This is an external 0.96" display. 
+    
     * [building a web server in esp32 arduino](https://randomnerdtutorials.com/esp32-web-server-arduino-ide/) 
   * [control pwm servo motor for esp32 via arduino](https://randomnerdtutorials.com/esp32-servo-motor-web-server-arduino-ide/)
+    
     * [esp32 free heap from arduino](https://techtutorialsx.com/2017/12/17/esp32-arduino-getting-the-free-heap/)
   * [reading a file  using spiffs](https://techtutorialsx.com/2018/08/05/esp32-arduino-spiffs-reading-a-file/)
+    
     * [ESP32 Tutorials](https://techtutorialsx.com/category/esp32/page/4/)
   * [build an all in one esp32 weather station](https://randomnerdtutorials.com/build-an-all-in-one-esp32-weather-station-shield/)  includes building schematic, pCB and getting it produced.
+    
     * [Getting started with ESP32 Bluetooth Low Energy BLE on Arduino IDE](https://randomnerdtutorials.com/esp32-bluetooth-low-energy-ble-arduino-ide/)
   * [ESP32 Bluetooth Classic with Arduino IDE – Getting Started](https://randomnerdtutorials.com/esp32-bluetooth-classic-arduino-ide/)  Also includes using a one wire DS18B20
+    
     * [ESP32 ADC – Read Analog Values with Arduino IDE](https://randomnerdtutorials.com/esp32-adc-analog-read-arduino-ide/)
   * [ESP32 with LoRa using Arduino IDE – Getting Started](https://randomnerdtutorials.com/esp32-lora-rfm95-transceiver-arduino-ide/)
+    
     * [How to use ESP32 Dual Core with Arduino IDE](https://randomnerdtutorials.com/esp32-dual-core-arduino-ide/)
   * [ESP32 External Wakeup from Deep Sleep](https://randomnerdtutorials.com/esp32-external-wake-up-deep-sleep/)
+    
     * [ESP32 Built-in OLED Board (Wemos Lolin32): Pinout, Libraries and OLED Control](https://randomnerdtutorials.com/esp32-built-in-oled-ssd1306/)
   * [Build a Multisensor Shield for ESP8266](https://randomnerdtutorials.com/esp8266-multisensor-shield/)
-    * [ESP32 Data Logging Temperature to MicroSD Card](https://randomnerdtutorials.com/esp32-data-logging-temperature-to-microsd-card/)  Includes SDCard,  Fetch time from NTP SErver,  Timer Wakeup,  Deepsleep for 10 minutes, DS18B20 temp sensor.   Includes installing exernal library for the two sensors.
+    
+  * [ESP32 Data Logging Temperature to MicroSD Card](https://randomnerdtutorials.com/esp32-data-logging-temperature-to-microsd-card/)  Includes SDCard,  Fetch time from NTP SErver,  Timer Wakeup,  Deepsleep for 10 minutes, DS18B20 temp sensor.   Includes installing exernal library for the two sensors.
   * [ESP32 Publish Sensor Readings to Google Sheets BME280](https://randomnerdtutorials.com/esp32-esp8266-publish-sensor-readings-to-google-sheets/)  Includes BME280, wiring to support Deepsleep with auto wakeup,  
+  
     * [ESP32 with BME280 Sensor using Arduino IDE (Pressure, Temperature, Humidity)](https://randomnerdtutorials.com/esp32-bme280-arduino-ide-pressure-temperature-humidity/#more-86478)  also [Adafruit BME280 Humidity + Barometric Pressure + Temperature Sensor Breakout](https://learn.adafruit.com/adafruit-bme280-humidity-barometric-pressure-temperature-sensor-breakout/overview) 
   * [ESP8266 NodeMCU Access Point (AP) for Web Server](https://randomnerdtutorials.com/esp8266-nodemcu-access-point-ap-web-server/)  Connect direct to ESP without having a router.  Could be useful for field downloading of data.
+    
     * [EXTREME POWER SAVING (0µA) with Microcontroller External Wake Up: Latching Power Circuit](https://randomnerdtutorials.com/power-saving-latching-circuit/)  [EasyEDA](https://easyeda.com/) Online PCB Designer.  [fritzing](https://fritzing.org/home/) opensource schematic design
   * [ESP32 with DC Motor and L298N Motor Driver - Control Speed and Direction](https://randomnerdtutorials.com/esp32-dc-motor-l298n-motor-driver-control-speed-direction/)  Includes use of the HBridge and controlling speed with the HBridge.
+    
     * [Sending data via email via posting through a service](https://randomnerdtutorials.com/esp32-esp8266-send-email-notification/)
   * [ESP32 Touch Wake Up from Deep Sleep](https://randomnerdtutorials.com/esp32-touch-wake-up-deep-sleep/)  Also introduces interrupts.
-    * [ESP32 with DHT11/DHT22 Temperature and Humidity Sensor using Arduino IDE](https://randomnerdtutorials.com/esp32-dht11-dht22-temperature-humidity-sensor-arduino-ide/)
-
+    
+  * [ESP32 with DHT11/DHT22 Temperature and Humidity Sensor using Arduino IDE](https://randomnerdtutorials.com/esp32-dht11-dht22-temperature-humidity-sensor-arduino-ide/)
+    
   * [Issues around RTC and crystals](https://github.com/espressif/arduino-esp32/issues/1225)
-
+  
     * ```
     void app_main() {
       struct timespec tp;
@@ -146,9 +167,9 @@ jpg format (decimal separator = ,)
     
       printf("Got time %lus\n", tp.tv_sec);
     if (tp.tv_sec < 1573532) {
-      	tp.tv_sec = 1573532;
+    	tp.tv_sec = 1573532;
     	tp.tv_nsec = 198;
-      	clock_settime(CLOCK_REALTIME, &tp);
+    	clock_settime(CLOCK_REALTIME, &tp);
     	puts("Time set");
       }
     
@@ -159,9 +180,9 @@ jpg format (decimal separator = ,)
       ```
     
     * [ESP32 I2C Communication: Set Pins, Multiple Bus Interfaces and Peripherals (Arduino IDE)](https://randomnerdtutorials.com/esp32-i2c-communication-arduino-ide/#more-89386)
-
+  
   * ### ESP LUA
-
+  
   * [ESP32 Getting Started with working LUA download](https://iotdesignpro.com/projects/getting-started-with-lua-programming-on-esp32)  My Node ESP32 did not arrive with a working LUA interpreter that could be used from ESPExplorer so had to modify the following to flash a good image. Must modify the following:
   
     * **WARNING: NO MATH IN LUA ON ESP32**.  On On 2019-12-30 I found The LUA made available
@@ -170,7 +191,7 @@ jpg format (decimal separator = ,)
     * This utility uses [esptool](https://github.com/espressif/esptool) from expressif.   
     * Download and install [explorer](https://github.com/4refr0nt/ESPlorer) [binary](https://www.esp8266.com/viewtopic.php?f=22&t=882)
     * After downloading the pre-built binary [esptool](https://github.com/chilipeppr/workspace-esp32-lua/files/1443578/esp32tool.zip) unzip it to a directory 
-      * This is not the same as the installed esptool from expressif.  It happens to use a similar name but includes a pre-built version of the firmware that will run on the ESP32 chip.
+    * This is not the same as the installed esptool from expressif.  It happens to use a similar name but includes a pre-built version of the firmware that will run on the ESP32 chip.
     * Ensure you are running python 3.6.1 or latter.  If you have a python 2.7 earlier in the search path it will break.
       * I Got an error saying that the PIP version was wrong and it required version 2.1 but even when I reinstalled esptool version 2.1 is still got the error.
     * Ensure the path to the python executable is in the System PATH
@@ -183,7 +204,7 @@ jpg format (decimal separator = ,)
       * It did not work when I only flashed a binary to only the 0x1000 address.   
     * You should see something like Connecting,  Then detecting chip,  Then uploading stub, etc.  The last line should be Hard Resetting via RTS pin.
       * Once  this was completed I could interact with the chip from PUTTY or ESExploer on COM3 at 115200 baud.
-
+  
   * 
   
   * Flashing  the LUA runtime
