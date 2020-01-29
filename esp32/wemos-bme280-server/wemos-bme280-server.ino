@@ -7,6 +7,10 @@
   // https://github.com/finitespace/BME280/blob/master/examples/BME_280_I2C_Test/BME_280_I2C_Test.ino
 #include <Wire.h>  
 IPAddress    apIP(42, 42, 42, 42);  // Defining a static IP address: local & gateway
+
+const char* service_host = "192.168.1.101"; // I set this statically in the host where the server is running
+const uint16_t service_port = 8091; // Change this for your listener
+
 #undef BeAServer 1
 #define BeAClient 1
 
@@ -55,19 +59,33 @@ const char *password = "datalog123"; // NOTE: Change to match your local Router
 float startAlt = -1.0;
 
 
-float tempC(NAN), relHumid(NAN), pressurePA(NAN);
-float dewC;
-float absHumid;
-float tempF;
-float dewF;
-float altMeter;
-float altFoot;
-int sec, minute, hr;
+//float tempC(NAN), relHumid(NAN), pressurePA(NAN);
+//float dewC;
+//float absHumid;
+//float tempF;
+//float dewF;
+//float altMeter;
+//float altFoot;
+//int sec, minute, hr;
 unsigned long currentTime = millis();
 unsigned long previousTime = 0; 
 const long timeoutTime = 25000;
 char html[1000];
 
+struct EnvReadings {
+  float tempC; 
+  float tempF;
+  float relHumid;
+  float absHumid;
+  float dewC;
+  float dewF;
+  float pressurePA;
+  float inHg;
+  float altMeter;
+  float altFoot;
+  unsigned long mill;
+  int sec, minute, hr;  
+} envRead1, envRead2;
 
 
 /*!
@@ -82,50 +100,50 @@ float calcAltitude(float atmospheric, float seaLevel) {
 }
 
 
-void printHumid() {
-  printHeapUsage();
-  readBME1();
-  calcFromLastBMERead();  
-  Serial.printf("RH=%3.3f tempC=%3.1f F=%3.1f gramM3=%3.4f dewC=%3.1f dewF=%3.1f presPA=%3.1f Alt=%6.1f AltFoot=%6.1f\n", relHumid, tempC, tempF, absHumid, dewC, dewF, pressurePA, altMeter, altFoot); 
+
+void calcFromLastBMERead(EnvReadings &read) {
+  read.dewC = calcDewPoint(read.tempC, read.relHumid);
+  read.absHumid = gramsPerM3(read.tempC, read.relHumid);
+  read.tempF = CToF(read.tempC);
+  read.dewF  = CToF(read.dewC);
+  read.altMeter =  calcAltitude(read.pressurePA, seaStandardPressurePA);
+  read.altFoot =  read.altMeter * 3.28084;  
+  read.inHg = read.pressurePA * 0.0002953;
+}
+
+void readBME(BME280I2C &sens, EnvReadings &read) {
+  sens.read(read.pressurePA, read.tempC, read.relHumid);  
+  sens.read(read.pressurePA, read.tempC, read.relHumid);  // discard first read clears up some noise
+  read.relHumid = read.relHumid / 100.0;  
+  read.mill = millis();
+  read.sec = read.mill / 1000;
+  read.minute = read.sec / 60;
+  read.hr = read.minute / 60;  
+  calcFromLastBMERead(read);
+}
+
+
+void makeRawDataStr(EnvReadings &read) {
+  snprintf ( html, 2500,
+"Uptime=%02d:%02d:%02d,tempC=%3.1f,tempF=%3.1f,relHumid=%3.1f,dewC=%3.1f,dewF=%3.1f,absHumid=%3.2f,pascal=%3.1f,inHg=%3.2f,AltMeter=%3.1f,altFoot=%3.1f",
+    read.hr, read.minute, read.sec,
+    read.tempC, read.tempF, read.relHumid*100,  read.dewC, read.dewF, read.absHumid, read.pressurePA, read.inHg, read.altMeter, read.altFoot
+  );
+}
+
+void printHumid(EnvReadings &read) {
+  printHeapUsage();  
+  Serial.printf("RH=%3.3f tempC=%3.1f F=%3.1f gramM3=%3.4f dewC=%3.1f dewF=%3.1f presPA=%3.1f Alt=%6.1f AltFoot=%6.1f\n", read.relHumid, read.tempC, read.tempF, read.absHumid, read.dewC, read.dewF, read.pressurePA, read.altMeter, read.altFoot); 
   // Wait a bit before scanning again
 }
 
-
-void readBME1() {
-  bme.read(pressurePA, tempC, relHumid);  
-  relHumid = relHumid / 100.0;  
-}
-
-void calcFromLastBMERead() {
-  sec = millis() / 1000;
-  minute = sec / 60;
-  hr = minute / 60;  
-  dewC = calcDewPoint(tempC, relHumid);
-  absHumid = gramsPerM3(tempC, relHumid);
-  tempF = CToF(tempC);
-  dewF  = CToF(dewC);
-  altMeter =  calcAltitude(pressurePA, seaStandardPressurePA);
-  altFoot =  altMeter * 3.28084;
-  
-}
-
-void makeRawDataStr() {
-  snprintf ( html, 2500,
-"Uptime=%02d:%02d:%02d,tempC=%3.1f,tempF=%3.1f,relHumid=%3.1f,dewC=%3.1f,dewF=%3.1f,absHumid=%3.2f,pascal=%3.1f,inHg=%3.2f,AltMeter=%3.1f,altFoot=%3.1f",
-    hr, minute % 60, sec % 60,
-    tempC, tempF, relHumid*100,  dewC, dewF, absHumid, pressurePA, (pressurePA * 0.0002953), altMeter, (altMeter * 3.28084)
-  );
-
-}
 
 #ifdef BeAServer
 void handleRaw() {
   digitalWrite (D4, 0); //turn the built in LED on pin DO of NodeMCU on
   /* Dynamically generate the LED toggle link, based on its current state (on or off)*/
-  readBME1();
-  readBME1();
-  calcFromLastBMERead();  
-  makeRawDataStr();
+  readBME(bme,envRead1);  
+  makeRawDataStr(envRead1);
   server.send ( 200, "text/html", html );
   digitalWrite ( LED_BUILTIN, 1 );
   //printHumid();
@@ -136,9 +154,7 @@ void handleRaw() {
 void handleRoot() {
   digitalWrite (D4, 0); //turn the built in LED on pin DO of NodeMCU on
   /* Dynamically generate the LED toggle link, based on its current state (on or off)*/
-  readBME1();
-  readBME1();
-  calcFromLastBMERead();
+  readBME(bme, envRead1);
   snprintf ( html, 2500,
 "<html>\
   <head>\
@@ -161,8 +177,10 @@ void handleRoot() {
     <p>AltMeter=%3.1f foot=%3.1f</p>\    
   </body>\
 </html>",
-    hr, minute % 60, sec % 60,
-    tempC, tempF, relHumid*100,  dewC, dewF, absHumid, pressurePA, (pressurePA * 0.0002953), altMeter, (altMeter * 3.28084)
+    envRead1.hr, envRead1.minute, envRead1.sec,
+    envRead1.tempC, envRead1.tempF, envRead1.relHumid*100,
+    envRead1.dewC, envRead1.dewF, envRead1.absHumid, envRead1.pressurePA, 
+    envRead1.inHg, envRead1.altMeter, envRead1.altFoot
   );
   server.send ( 200, "text/html", html );
   digitalWrite ( D4, 1 );
@@ -177,27 +195,34 @@ void disableWiFi() {
   WiFi.forceSleepBegin(); delay(1);
 }
 
-void enableWiFiSta() {  
+bool enableWiFiSta() {   
   if (WiFi.status() != WL_CONNECTED) {
     int numTry = 0;
     WiFi.forceSleepWake(); delay(1);
     WiFi.mode(WIFI_STA); delay(1);
-    wifi_station_connect(); delay(1);  
+    Serial.println("start wifi_station_connect");
+    wifi_station_connect(); delay(1);      
+    Serial.printf("Starting Connection to WiFi Router ssid=%s  pass=%s", ssid, password);
     WiFi.begin(ssid, password);
     // Wait for connection
     while ((WiFi.status() != WL_CONNECTED) && (numTry < 50)) {
-      delay(25);
-      Serial.println("Waiting for WiFi Connection");
+      delay(450);
+      Serial.printf(" numTry=%d", numTry);
     }
+    Serial.println("finished wifi status check");
     if (WiFi.status() == WL_CONNECTED) {
       Serial.println("");
       Serial.print("Connected to ");
-      Serial.println(ssid);
-      Serial.print("IP address: ");
+      Serial.print(ssid);
+      Serial.print("  IP address: ");
       Serial.println(WiFi.localIP());  
+      return true;
     } else {
       Serial.printf("Unabled to connect to ssid=%s pass=%s\n", ssid, password);
+      return false;
     }
+  } else {
+    Serial.println("Already Connected to access point");
   }
 }
 
@@ -260,31 +285,31 @@ void setup() {
   
 }
 
-const char* host = "192.168.2.2"; // I set this statically in the host where the server is running
-const uint16_t port = 8091; // Change this for your listener
 
 #ifdef BeAClient
   // Send updates to a remote server
   // disable the WiFi except when we are
   // sending updates.
-  void SendUpdate() {
-    enableWiFiSta();
+  bool SendUpdate() {
+    WiFi.forceSleepWake(); delay(1);
+    if (enableWiFiSta() == false) {
+      Serial.println("Unabled to connect to router");
+      return false;
+    }
     Serial.print("connecting to ");
-    Serial.print(host);
+    Serial.print(service_host);
     Serial.print(':');
-    Serial.println(port);
+    Serial.println(service_port);
 
     // Use WiFiClient class to create TCP connections
     WiFiClient client;
-    if (!client.connect(host, port)) {
+    if (!client.connect(service_host, service_port)) {
       Serial.println("connection failed");
       delay(5000);
-      return;
+      return false;
     }
-    readBME1();
-    readBME1();
-    calcFromLastBMERead();  
-    makeRawDataStr();
+    readBME(bme, envRead1);
+    makeRawDataStr(envRead1);
 
     // This will send a string to the server
     Serial.println("sending data to server");
@@ -294,7 +319,7 @@ const uint16_t port = 8091; // Change this for your listener
       client.print("POST /sensorReading");      
       client.println(" HTTP/1.1");
       client.print("Host: ");
-      client.println(host);
+      client.println(service_host);
       client.print("Content-Length: ");
       client.println(strlen(html));
       client.println(); // ends the headers
@@ -311,13 +336,16 @@ const uint16_t port = 8091; // Change this for your listener
       //}
       client.stop();
       Serial.println("\n[Disconnected]");
+      return true;
     }  else  {
       Serial.println("connection failed!]");
       client.stop();      
+      return false;
     }
     delay(5);
 
     #ifndef BeAServer
+      WiFi.disconnect();
       disableWiFi();
     #endif
   }
@@ -340,10 +368,8 @@ const uint16_t port = 8091; // Change this for your listener
           char c = client.read();             // read a byte, then
           Serial.write(c);                    // print it out the serial monitor
         }
-        readBME1();
-        readBME1();
-        calcFromLastBMERead();  
-        makeRawDataStr();      
+        readBME(bme, envRead1);
+        makeRawDataStr(envRead1);      
         client.println(html);
         delay(5000);
       }
